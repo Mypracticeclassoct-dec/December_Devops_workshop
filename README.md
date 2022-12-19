@@ -34,3 +34,22 @@ pipeline {
     }
 }
 ```
+azure-devops
+--------
+---yaml
+# where to run the ci/cd pipeline
+pool:
+  vmImage: ubuntu-22.04
+
+# when to run
+trigger:
+  - main
+
+# what has to be done
+steps:
+  - task: Docker@2
+    inputs:
+      command: build
+      Dockerfile: "./Dockerfile"
+      tags: "shaikkhajaibrahim/saleordashboard:AZDEV"
+---
