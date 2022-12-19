@@ -37,6 +37,7 @@ pipeline {
 azure-devops
 --------
 ---yaml
+---
 # where to run the ci/cd pipeline
 pool:
   vmImage: ubuntu-22.04
@@ -49,7 +50,7 @@ trigger:
 steps:
   - task: Docker@2
     inputs:
-      command: build
+      command: buildAndPush
       Dockerfile: "./Dockerfile"
       tags: "shaikkhajaibrahim/saleordashboard:AZDEV"
----
+      containerRegistry: DockerHub
