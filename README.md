@@ -54,3 +54,31 @@ steps:
       Dockerfile: "./Dockerfile"
       tags: "shaikkhajaibrahim/saleordashboard:AZDEV"
       containerRegistry: DockerHub
+
+## Activity4:
+-------------
+* Create a saleor-core : `
+Saleor core: https://github.com/WorkshopsByKhaja/saleor`
+---yaml
+---
+---
+# where to run the ci/cd pipeline
+pool:
+  vmImage: ubuntu-22.04
+
+# when to run
+trigger:
+  - main
+
+# what has to be done
+steps:
+  - task: Docker@2
+    inputs:
+      command: buildAndPush
+      Dockerfile: "./Dockerfile"
+      tags: "shaikkhajaibrahim/saleorcore:AZDEV"
+      containerRegistry: DockerHub
+---
+
+## Activity 5:
+* create a image on saleor storefront
