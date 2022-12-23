@@ -7,7 +7,7 @@ spec:
   minReadySeconds: 10
   replicas: 1
   selector:
-    matchlabels:
+    matchLabels:
       app: core 
   template:
     metadata:
