@@ -1,0 +1,40 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchlabels:
+      app: db 
+  template:
+    metadata:
+      name: database 
+      labels:
+       app: db
+    spec: 
+     containers:
+       - name: postgressdb
+         image: library/postgres:13-alpine
+         env: 
+           - POSTGRES_USER=saleor
+             POSTGRES_PASSWORD=saleor
+         ports: 
+           - containerPort: 5432
+             protocol: TCP      
+--- 
+apiVersion: v1
+kind: service
+metadata: 
+  name: service-db
+spec:
+  type: LoadBalancer 
+  selector:
+    app: db 
+  ports:
+    - port: 35000
+      targetport: 5432
+      nodeport: 30000
+      protocol: TCP

@@ -1,0 +1,37 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchlabels: 
+      app1: cache
+  template:
+    metadata:
+      name: database 
+      labels:
+       app1: cache
+    spec: 
+     containers: 
+       - name: redis
+         image: library/redis:5.0-alpine
+         ports:
+          - containerPort: 6379
+            protocol: TCP      
+--- 
+apiVersion: v1
+kind: service
+metadata: 
+  name: service-db
+spec:
+  type: LoadBalancer 
+  selector: 
+    app1: cache 
+  ports:
+    - port: 35001
+      targetport: 6379
+      nodeport: 30001
+      protocol: TCP

@@ -1,0 +1,45 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: core
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchlabels:
+      app: core 
+  template:
+    metadata:
+      name: database 
+      labels:
+       app: core
+    spec: 
+     containers:
+       - name: saleorcore
+         image: vamsibakka/saleor-core:DEV 
+         ports:
+         - containerPort: 8000
+           protocol: TCP
+           name: saleorcore
+         command: 
+          - python 
+          - manage.py
+          - runserver 
+          - 0.0.0.0:8000 
+
+               
+--- 
+apiVersion: v1
+kind: service
+metadata: 
+  name: core
+spec:
+  type: LoadBalancer 
+  selector:
+    app: core 
+  ports:
+    - port: 35000
+      targetport: 8000
+      nodeport: 30000
+      protocol: TCP
