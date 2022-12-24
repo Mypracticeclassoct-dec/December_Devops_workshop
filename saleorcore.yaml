@@ -40,6 +40,6 @@ spec:
     app: core 
   ports:
     - port: 35000
-      targetport: 8000
-      nodeport: 30000
+      targetPort: 8000
+      nodePort: 30000
       protocol: TCP

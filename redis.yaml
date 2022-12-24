@@ -32,6 +32,6 @@ spec:
     app1: cache 
   ports:
     - port: 35001
-      targetport: 6379
-      nodeport: 30001
+      targetPort: 6379
+      nodePort: 30001
       protocol: TCP
