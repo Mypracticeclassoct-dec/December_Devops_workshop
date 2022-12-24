@@ -19,8 +19,10 @@ spec:
        - name: postgressdb
          image: library/postgres:13-alpine
          env: 
-           - POSTGRES_USER=saleor
-             POSTGRES_PASSWORD=saleor
+           - name: POSTGRES_USER
+             value: saleor
+           - name: POSTGRES_PASSWORD
+             value: saleor
          ports: 
            - containerPort: 5432
              protocol: TCP      
