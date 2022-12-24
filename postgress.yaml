@@ -37,6 +37,6 @@ spec:
     app: db 
   ports:
     - port: 35000
-      targetport: 5432
-      nodeport: 30000
+      targetPort: 5432
+      nodePort: 30000
       protocol: TCP
